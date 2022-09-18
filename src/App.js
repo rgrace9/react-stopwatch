@@ -6,24 +6,8 @@ function App() {
 
   const [isOn, setIsOn] = useState(false);
 
-  const renderStartContent = () => {
-
-    return (
-      <React.Fragment>
-        <StartIcon />
-        Start
-      </React.Fragment>
-    );
-  }
-
-  const renderPauseContent = () => {
-
-    return (
-      <React.Fragment>
-        <PauseIcon />
-        Pause
-      </React.Fragment>
-    );
+  const onReset = () => {
+    setIsOn(false)
   }
 
   return (
@@ -33,17 +17,39 @@ function App() {
       </div>
       <div className='buttons'>
         <button
-          className={`button ${isOn ? 'button--active' : 'button--inactive'}`}
+          className={`button ${isOn ? 'button--inactive' : 'button--active'}`}
           onClick={() => setIsOn(() => !isOn)}
+          aria-label='Play'
+          aria-pressed={isOn}
         >
-          {isOn ? renderStartContent() : renderPauseContent()}
+          {isOn ? renderPauseContent() : renderStartContent()}
         </button>
-        <button className='button button--secondary'>
+        <button className='button button--secondary' onClick={onReset}>
           <ResetIcon />
           Reset
         </button>
       </div>
     </div>
+  );
+}
+
+const renderStartContent = () => {
+
+  return (
+    <React.Fragment>
+      <StartIcon />
+      Start
+    </React.Fragment>
+  );
+}
+
+const renderPauseContent = () => {
+
+  return (
+    <React.Fragment>
+      <PauseIcon />
+      Pause
+    </React.Fragment>
   );
 }
 
