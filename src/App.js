@@ -13,6 +13,21 @@ function App() {
     setSeconds(0);
   }
 
+  const formatTime = () => {
+    let hours = Math.floor(seconds / 3600);
+    let minutes = Math.floor((seconds % 3600) / 60);
+    let remainingSeconds = Math.floor(seconds % 60);
+
+    let formattedTime = "";
+
+    if (hours > 0) {
+        formattedTime += "" + hours + ":" + (minutes < 10 ? "0" : "");
+    }
+
+    formattedTime += "" + minutes + ":" + (remainingSeconds < 10 ? "0" : "");
+    return formattedTime += "" + remainingSeconds;
+  }
+
   useEffect(() => {
     let interval;
 
@@ -27,7 +42,7 @@ function App() {
   return (
     <div className="container">
       <div className='time'>
-        {seconds}s
+        {formatTime(seconds)}
       </div>
       <div className='buttons'>
         <button
