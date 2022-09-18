@@ -1,19 +1,33 @@
 import './App.css';
 import { PauseIcon, ResetIcon, StartIcon } from './icons';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function App() {
 
   const [isOn, setIsOn] = useState(false);
 
+  const [seconds, setSeconds] = useState(0);
+
   const onReset = () => {
-    setIsOn(false)
+    setIsOn(false);
+    setSeconds(0);
   }
+
+  useEffect(() => {
+    let interval;
+
+    if (isOn) {
+      interval = setInterval(() => {
+        setSeconds(seconds => seconds + 1);
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [isOn]);
 
   return (
     <div className="container">
       <div className='time'>
-        00:00
+        {seconds}s
       </div>
       <div className='buttons'>
         <button
