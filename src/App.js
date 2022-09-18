@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import { PauseIcon, ResetIcon, StartIcon } from './icons';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className='time'>
+        00:00
+      </div>
+      <div className='buttons'>
+      <button className='button button--active'>
+          <StartIcon />
+          Start
+        </button>
+        <button className='button button--inactive'>
+          <PauseIcon />
+          Pause
+        </button>
+        <button className='button button--secondary'>
+          <ResetIcon />
+          Reset
+        </button>
+      </div>
     </div>
   );
 }
