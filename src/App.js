@@ -14,33 +14,31 @@ function App() {
   }
 
   const formatTime = () => {
-    let hours = Math.floor(seconds / 3600);
-    let minutes = Math.floor((seconds % 3600) / 60);
-    let remainingSeconds = Math.floor(seconds % 60);
-
-    let formattedTime = "";
+    let hours = Math.floor(seconds / 3600); // returns the number of full hours
+    let minutes = Math.floor((seconds % 3600) / 60); // returns the number of full minutes that remain after getting the number of full hours
+    let remainingSeconds = Math.floor(seconds % 60); // returns the remaining seconds
+    let formattedTime = '';
 
     if (hours > 0) {
-        formattedTime += "" + hours + ":" + (minutes < 10 ? "0" : "");
+      formattedTime = `${hours}:${minutes < 10 ? '0' : ''}`
     }
 
-    formattedTime += "" + minutes + ":" + (remainingSeconds < 10 ? "0" : "");
-    return formattedTime += "" + remainingSeconds;
+    formattedTime = `${formattedTime}${minutes}:${(remainingSeconds < 10 ? '0' : '')}`;
+    return `${formattedTime}${remainingSeconds}`;
   }
 
   useEffect(() => {
-    let interval;
-
     if (isOn) {
-      interval = setInterval(() => {
+      const interval = setInterval(() => {
         setSeconds(seconds => seconds + 1);
       }, 1000);
+      return () => clearInterval(interval);
     }
-    return () => clearInterval(interval);
-  }, [isOn]);
+  }, [isOn, seconds]);
 
   return (
-    <div className="container">
+    <main className="container">
+      <h1 className='heading'>Stopwatch</h1>
       <div className='time'>
         {formatTime(seconds)}
       </div>
@@ -48,8 +46,6 @@ function App() {
         <button
           className={`button ${isOn ? 'button--inactive' : 'button--active'}`}
           onClick={() => setIsOn(() => !isOn)}
-          aria-label='Play'
-          aria-pressed={isOn}
         >
           {isOn ? renderPauseContent() : renderStartContent()}
         </button>
@@ -58,7 +54,7 @@ function App() {
           Reset
         </button>
       </div>
-    </div>
+    </main>
   );
 }
 

@@ -6,6 +6,10 @@
   margin-top: 50px;
 }
 
+.heading {
+  font-size: 5.6rem;
+}
+
 .time {
   font-size: 5rem;
 }
@@ -28,6 +32,7 @@
   width: 200px;
   padding: 12px 0;
   border: 2px solid transparent;
+  font-family: 'Lato', sans-serif;
 }
 
 .button:focus {

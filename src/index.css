@@ -11,7 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
-
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 html {
-  font-size: 10px
+  font-size: 10px;
+  font-family: 'Lato', sans-serif;
+
 }
