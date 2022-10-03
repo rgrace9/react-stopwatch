@@ -62,3 +62,7 @@
 .button__icon {
   margin-right: 4px;
 }
+
+abbr[title] {
+  text-decoration: unset;
+}
